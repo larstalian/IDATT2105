@@ -1,4 +1,5 @@
 <template>
+
   <header>
     <h1>Calculator</h1></header>
   <div class="main-content">
@@ -19,7 +20,7 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Courier New', Courier, monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -31,9 +32,11 @@ body{
   margin: 0;
   justify-content: center;
 }
-.main-content{
+.main-content {
   display: flex;
   justify-content: center;
+  width: 100%;
+  padding: 1rem;
 }
 
 h1{
@@ -48,4 +51,5 @@ header {
   background-color: #7700ff;
   height: fit-content;
 }
+
 </style>
