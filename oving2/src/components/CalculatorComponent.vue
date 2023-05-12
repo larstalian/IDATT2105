@@ -116,7 +116,7 @@ export default {
     },
     nextInput(operator) {
       this.prevValue = parseFloat(this.inputValue);
-      this.prevValue = this.inputValue;
+      this.prevValue = parseFloat(this.inputValue);
       this.inputValue = "";
       this.operator = operator;
     },
@@ -145,7 +145,7 @@ export default {
           result = this.prevValue * newValue;
           break;
       }
-      this.inputValue = result;
+      this.inputValue = result.toString();
     },
   },
 };
