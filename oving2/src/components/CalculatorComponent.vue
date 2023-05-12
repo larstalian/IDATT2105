@@ -94,59 +94,71 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+
 export default {
   name: "CalculatorComponent",
   props: {
     msg: String,
   },
-  data() {
-    return {
-      inputValue: "",
-      prevValue: "",
-      operator: "",
-    };
-  },
-  methods: {
-    updateInput(value) {
-      if (value === "." && this.inputValue.includes(".")) {
+  setup() {
+    const inputValue = ref("");
+    const prevValue = ref("");
+    const operator = ref("");
+
+    function updateInput(value) {
+      if (value === "." && inputValue.value.includes(".")) {
         return;
       }
 
-      this.inputValue += value;
-    },
-    nextInput(operator) {
-      this.prevValue = parseFloat(this.inputValue);
-      this.prevValue = parseFloat(this.inputValue);
-      this.inputValue = "";
-      this.operator = operator;
-    },
-    clear() {
-      this.inputValue = "";
-    },
-    del(){
-      const length = this.inputValue.length;
-      this.inputValue = this.inputValue.substring(0, length -1);
-    },
-    equal() {
-      let newValue = parseFloat(this.inputValue);
+      inputValue.value += value;
+    }
+
+    function nextInput(op) {
+      prevValue.value = parseFloat(inputValue.value);
+      inputValue.value = "";
+      operator.value = op;
+    }
+
+    function clear() {
+      inputValue.value = "";
+    }
+
+    function del() {
+      const length = inputValue.value.length;
+      inputValue.value = inputValue.value.substring(0, length - 1);
+    }
+
+    function equal() {
+      let newValue = parseFloat(inputValue.value);
       let result = 0;
 
-      switch (this.operator) {
+      switch (operator.value) {
         case `+`:
-          result = this.prevValue + newValue;
+          result = prevValue.value + newValue;
           break;
         case "-":
-          result = this.prevValue - newValue;
+          result = prevValue.value - newValue;
           break;
         case "/":
-          result = this.prevValue / newValue;
+          result = prevValue.value / newValue;
           break;
         case "*":
-          result = this.prevValue * newValue;
+          result = prevValue.value * newValue;
           break;
       }
-      this.inputValue = result.toString();
-    },
+      inputValue.value = result.toString();
+    }
+
+    return {
+      inputValue,
+      prevValue,
+      updateInput,
+      nextInput,
+      clear,
+      del,
+      equal,
+    };
   },
 };
 </script>

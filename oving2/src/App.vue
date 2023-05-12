@@ -1,9 +1,9 @@
 <template>
-
   <header>
-    <h1>Calculator</h1></header>
+    <h1>Calculator</h1>
+  </header>
   <div class="main-content">
-    <CalculatorComponent msg="Welcome to Your Vue.js App"/>
+    <CalculatorComponent msg="Welcome to Your Vue.js App" />
   </div>
 </template>
 
@@ -11,11 +11,14 @@
 import CalculatorComponent from './components/CalculatorComponent.vue';
 
 export default {
-  name: 'App',
   components: {
-    CalculatorComponent
-}
-}
+    CalculatorComponent,
+  },
+  setup() {
+    // Add Composition API code here
+    // Use refs and reactive objects to define reactive data
+  },
+};
 </script>
 
 <style>
@@ -26,9 +29,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 0;
-
 }
-body{
+body {
   margin: 0;
   justify-content: center;
 }
@@ -39,7 +41,7 @@ body{
   padding: 1rem;
 }
 
-h1{
+h1 {
   margin: 0;
   padding: 10px;
 }
@@ -51,5 +53,4 @@ header {
   background-color: #7700ff;
   height: fit-content;
 }
-
 </style>
