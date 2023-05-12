@@ -14,10 +14,6 @@ export default {
   components: {
     CalculatorComponent,
   },
-  setup() {
-    // Add Composition API code here
-    // Use refs and reactive objects to define reactive data
-  },
 };
 </script>
 
