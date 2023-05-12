@@ -3,18 +3,12 @@
     <h1>Calculator</h1>
   </header>
   <div class="main-content">
-    <CalculatorComponent msg="Welcome to Your Vue.js App" />
+    <CalculatorComponent/>
   </div>
 </template>
 
-<script>
+<script setup>
 import CalculatorComponent from './components/CalculatorComponent.vue';
-
-export default {
-  components: {
-    CalculatorComponent,
-  },
-};
 </script>
 
 <style>

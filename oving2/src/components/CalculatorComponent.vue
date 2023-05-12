@@ -93,74 +93,56 @@
   </body>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue';
 
-export default {
-  name: "CalculatorComponent",
-  props: {
-    msg: String,
-  },
-  setup() {
-    const inputValue = ref("");
-    const prevValue = ref("");
-    const operator = ref("");
+const inputValue = ref("");
+const prevValue = ref("");
+const operator = ref("");
 
-    function updateInput(value) {
-      if (value === "." && inputValue.value.includes(".")) {
-        return;
-      }
+function updateInput(value) {
+  if (value === "." && inputValue.value.includes(".")) {
+    return;
+  }
 
-      inputValue.value += value;
-    }
+  inputValue.value += value;
+}
 
-    function nextInput(op) {
-      prevValue.value = parseFloat(inputValue.value);
-      inputValue.value = "";
-      operator.value = op;
-    }
+function nextInput(op) {
+  prevValue.value = parseFloat(inputValue.value);
+  inputValue.value = "";
+  operator.value = op;
+}
 
-    function clear() {
-      inputValue.value = "";
-    }
+function clear() {
+  inputValue.value = "";
+}
 
-    function del() {
-      const length = inputValue.value.length;
-      inputValue.value = inputValue.value.substring(0, length - 1);
-    }
+function del() {
+  const length = inputValue.value.length;
+  inputValue.value = inputValue.value.substring(0, length - 1);
+}
 
-    function equal() {
-      let newValue = parseFloat(inputValue.value);
-      let result = 0;
+function equal() {
+  let newValue = parseFloat(inputValue.value);
+  let result = 0;
 
-      switch (operator.value) {
-        case `+`:
-          result = prevValue.value + newValue;
-          break;
-        case "-":
-          result = prevValue.value - newValue;
-          break;
-        case "/":
-          result = prevValue.value / newValue;
-          break;
-        case "*":
-          result = prevValue.value * newValue;
-          break;
-      }
-      inputValue.value = result.toString();
-    }
-
-    return {
-      inputValue,
-      prevValue,
-      updateInput,
-      nextInput,
-      clear,
-      del,
-      equal,
-    };
-  },
-};
+  switch (operator.value) {
+    case `+`:
+      result = prevValue.value + newValue;
+      break;
+    case "-":
+      result = prevValue.value - newValue;
+      break;
+    case "/":
+      result = prevValue.value / newValue;
+      break;
+    case "*":
+      result = prevValue.value * newValue;
+      break;
+  }
+  inputValue.value = result.toString();
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
