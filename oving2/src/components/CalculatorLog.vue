@@ -1,17 +1,17 @@
 <template>
-    <div id="log-wrapper">
-    <h4>Calculator History</h4> 
+  <div id="log-wrapper">
+    <h4>Calculator History</h4>
     <ul id="log-list">
-        <li v-for="(log, index) in logList" :key="index">
-          {{ log }}
-        </li>
-      </ul>
-    </div>
-  </template>
+      <li v-for="(log, index) in logList" :key="index">
+        {{ log }}
+      </li>
+    </ul>
+  </div>
+</template>
 
 <script setup>
-import { useStore } from '../store/store.js';
-import { computed } from 'vue';
+import { useStore } from "../store/store.js";
+import { computed } from "vue";
 
 const store = useStore();
 const logList = computed(() => store.logList);
@@ -19,8 +19,8 @@ const logList = computed(() => store.logList);
 
 <style scoped>
 #log-list {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
   list-style: none;
   padding: 0;
 }
@@ -36,10 +36,9 @@ const logList = computed(() => store.logList);
   margin: 40px;
   text-align: center;
 }
-h4{
-    margin: 4px;
-    border-bottom: solid black 1px;
-    width: 100%;
+h4 {
+  margin: 4px;
+  border-bottom: solid black 1px;
+  width: 100%;
 }
-
 </style>

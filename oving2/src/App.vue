@@ -3,19 +3,19 @@
     <h1>Calculator</h1>
   </header>
   <div class="main-content">
-    <CalculatorComponent/>
-    <CalculatorLog/>
+    <CalculatorComponent />
+    <CalculatorLog />
   </div>
 </template>
 
 <script setup>
-import CalculatorComponent from './components/CalculatorComponent.vue';
-import CalculatorLog from './components/CalculatorLog.vue';
+import CalculatorComponent from "./components/CalculatorComponent.vue";
+import CalculatorLog from "./components/CalculatorLog.vue";
 </script>
 
 <style>
 #app {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -41,7 +41,7 @@ header {
   margin-top: 0;
   background-color: #7700ff;
   height: fit-content;
-  width:100%;
+  width: 100%;
 }
 
 @media (max-width: 600px) {

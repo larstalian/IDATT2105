@@ -1,101 +1,89 @@
 <template>
-    <div id="calculator">
-      <div id="calc-view-wrapper">
-        <input type="text" id="calc-view" v-model="inputValue" />
-        <textarea readonly id="result-view" v-model="prevValue" class="non-resizable"></textarea>
-        <textarea readonly id="error-view" v-model="errorMessage" class="non-resizable">
+  <div id="calculator">
+    <div id="calc-view-wrapper">
+      <input type="text" id="calc-view" v-model="inputValue" />
+      <textarea
+        readonly
+        id="result-view"
+        v-model="prevValue"
+        class="non-resizable"
+      ></textarea>
+      <textarea
+        readonly
+        id="error-view"
+        v-model="errorMessage"
+        class="non-resizable"
+      >
       </textarea>
+    </div>
+    <div id="calc-buttons" class="grid-container">
+      <div class="grid-item">
+        <button id="c" class="calc-button" @click="clear()">C</button>
       </div>
-      <div id="calc-buttons" class="grid-container">
-        <div class="grid-item">
-          <button id="c" class="calc-button" @click="clear()">C</button>
-        </div>
-        <div class="grid-item">
-          <button id="ans" class="calc-button" @click="ans()">ANS</button>
-        </div>
-        <div class="grid-item">
-          <button id="del" class="calc-button" @click="del()">DEL</button>
-        </div>
-        <div class="grid-item">
-          <button id="+" class="calc-button" @click="nextInput(`+`)">+</button>
-        </div>
-        <div class="grid-item">
-          <button id="1" class="calc-button" @click="updateInput('1')">
-            1
-          </button>
-        </div>
-        <div class="grid-item">
-          <button id="2" class="calc-button" @click="updateInput(`2`)">
-            2
-          </button>
-        </div>
-        <div class="grid-item">
-          <button id="3" class="calc-button" @click="updateInput(`3`)">
-            3
-          </button>
-        </div>
-        <div class="grid-item">
-          <button id="-" class="calc-button" @click="nextInput(`-`)">-</button>
-        </div>
-        <div class="grid-item">
-          <button id="4" class="calc-button" @click="updateInput(`4`)">
-            4
-          </button>
-        </div>
-        <div class="grid-item">
-          <button id="5" class="calc-button" @click="updateInput(`5`)">
-            5
-          </button>
-        </div>
-        <div class="grid-item">
-          <button id="6" class="calc-button" @click="updateInput(`6`)">
-            6
-          </button>
-        </div>
-        <div class="grid-item">
-          <button id="*" class="calc-button" @click="nextInput(`*`)">*</button>
-        </div>
-        <div class="grid-item">
-          <button id="7" class="calc-button" @click="updateInput(`7`)">
-            7
-          </button>
-        </div>
-        <div class="grid-item">
-          <button id="8" class="calc-button" @click="updateInput(`8`)">
-            8
-          </button>
-        </div>
-        <div class="grid-item">
-          <button id="9" class="calc-button" @click="updateInput(`9`)">
-            9
-          </button>
-        </div>
-        <div class="grid-item">
-          <button id="/" class="calc-button" @click="nextInput(`/`)">/</button>
-        </div>
-        <div class="grid-item">
-          <button id="none" class="calc-button"></button>
-        </div>
-        <div class="grid-item">
-          <button id="0" class="calc-button" @click="updateInput(`0`)">
-            0
-          </button>
-        </div>
-        <div class="grid-item">
-          <button id="." class="calc-button" @click="updateInput(`.`)">
-            .
-          </button>
-        </div>
-        <div class="grid-item">
-          <button id="=" class="calc-button" @click="equal">=</button>
-        </div>
+      <div class="grid-item">
+        <button id="ans" class="calc-button" @click="ans()">ANS</button>
+      </div>
+      <div class="grid-item">
+        <button id="del" class="calc-button" @click="del()">DEL</button>
+      </div>
+      <div class="grid-item">
+        <button id="+" class="calc-button" @click="nextInput(`+`)">+</button>
+      </div>
+      <div class="grid-item">
+        <button id="1" class="calc-button" @click="updateInput('1')">1</button>
+      </div>
+      <div class="grid-item">
+        <button id="2" class="calc-button" @click="updateInput(`2`)">2</button>
+      </div>
+      <div class="grid-item">
+        <button id="3" class="calc-button" @click="updateInput(`3`)">3</button>
+      </div>
+      <div class="grid-item">
+        <button id="-" class="calc-button" @click="nextInput(`-`)">-</button>
+      </div>
+      <div class="grid-item">
+        <button id="4" class="calc-button" @click="updateInput(`4`)">4</button>
+      </div>
+      <div class="grid-item">
+        <button id="5" class="calc-button" @click="updateInput(`5`)">5</button>
+      </div>
+      <div class="grid-item">
+        <button id="6" class="calc-button" @click="updateInput(`6`)">6</button>
+      </div>
+      <div class="grid-item">
+        <button id="*" class="calc-button" @click="nextInput(`*`)">*</button>
+      </div>
+      <div class="grid-item">
+        <button id="7" class="calc-button" @click="updateInput(`7`)">7</button>
+      </div>
+      <div class="grid-item">
+        <button id="8" class="calc-button" @click="updateInput(`8`)">8</button>
+      </div>
+      <div class="grid-item">
+        <button id="9" class="calc-button" @click="updateInput(`9`)">9</button>
+      </div>
+      <div class="grid-item">
+        <button id="/" class="calc-button" @click="nextInput(`/`)">/</button>
+      </div>
+      <div class="grid-item">
+        <button id="none" class="calc-button"></button>
+      </div>
+      <div class="grid-item">
+        <button id="0" class="calc-button" @click="updateInput(`0`)">0</button>
+      </div>
+      <div class="grid-item">
+        <button id="." class="calc-button" @click="updateInput(`.`)">.</button>
+      </div>
+      <div class="grid-item">
+        <button id="=" class="calc-button" @click="equal">=</button>
       </div>
     </div>
+  </div>
 </template>
 
 <script setup>
-import { useStore } from '../store/store.js';
-import { computed } from 'vue';
+import { useStore } from "../store/store.js";
+import { computed } from "vue";
 
 const store = useStore();
 
@@ -103,9 +91,10 @@ const inputValue = computed(() => store.inputValue);
 const prevValue = computed(() => store.prevValue);
 const errorMessage = computed(() => store.errorMessage);
 
-const ans =  () => {
-  store.clear()}
-  store.updateInput(store.lastAnswer.toString());
+const ans = () => {
+  store.clear();
+};
+store.updateInput(store.lastAnswer.toString());
 const updateInput = (value) => store.updateInput(value);
 const nextInput = (op) => store.nextInput(op);
 const clear = () => store.clear();
@@ -155,7 +144,7 @@ h1 {
   display: flex;
   align-items: center;
   font-family: "Courier New", Courier, monospace;
-  font-size:x-large;
+  font-size: x-large;
   border-radius: 5px;
   width: 60px;
   height: 60px;
@@ -180,7 +169,7 @@ h1 {
   border-radius: 5px;
 }
 #calc-view {
-  font-family: "Courier New" , Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-weight: bold;
   display: flex;
   width: 230px;
@@ -211,12 +200,12 @@ h1 {
   color: gray;
   user-select: none;
 }
-.non-resizable{
+.non-resizable {
   resize: none;
   user-select: none;
 }
 
-#error-view{
+#error-view {
   width: 230px;
   border-top: 2px solid black;
   background-color: white;
