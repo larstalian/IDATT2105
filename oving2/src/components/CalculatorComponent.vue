@@ -1,16 +1,17 @@
 <template>
-  <body>
     <div id="calculator">
       <div id="calc-view-wrapper">
         <input type="text" id="calc-view" v-model="inputValue" />
-        <input id="result-view" disabled v-model="prevValue" />
+        <textarea readonly id="result-view" v-model="prevValue" class="non-resizable"></textarea>
+        <textarea readonly id="error-view" v-model="errorMessage" class="non-resizable">
+      </textarea>
       </div>
       <div id="calc-buttons" class="grid-container">
         <div class="grid-item">
           <button id="c" class="calc-button" @click="clear()">C</button>
         </div>
         <div class="grid-item">
-          <button id="ans" class="calc-button">ANS</button>
+          <button id="ans" class="calc-button" @click="ans()">ANS</button>
         </div>
         <div class="grid-item">
           <button id="del" class="calc-button" @click="del()">DEL</button>
@@ -90,70 +91,32 @@
         </div>
       </div>
     </div>
-  </body>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { useStore } from '../store/store.js';
+import { computed } from 'vue';
 
-const inputValue = ref("");
-const prevValue = ref("");
-const operator = ref("");
+const store = useStore();
 
-function updateInput(value) {
-  if (value === "." && inputValue.value.includes(".")) {
-    return;
-  }
+const inputValue = computed(() => store.inputValue);
+const prevValue = computed(() => store.prevValue);
+const errorMessage = computed(() => store.errorMessage);
 
-  inputValue.value += value;
-}
-
-function nextInput(op) {
-  prevValue.value = parseFloat(inputValue.value);
-  inputValue.value = "";
-  operator.value = op;
-}
-
-function clear() {
-  inputValue.value = "";
-}
-
-function del() {
-  const length = inputValue.value.length;
-  inputValue.value = inputValue.value.substring(0, length - 1);
-}
-
-function equal() {
-  let newValue = parseFloat(inputValue.value);
-  let result = 0;
-
-  switch (operator.value) {
-    case `+`:
-      result = prevValue.value + newValue;
-      break;
-    case "-":
-      result = prevValue.value - newValue;
-      break;
-    case "/":
-      result = prevValue.value / newValue;
-      break;
-    case "*":
-      result = prevValue.value * newValue;
-      break;
-  }
-  inputValue.value = result.toString();
-}
+const ans =  () => {
+  store.clear()}
+  store.updateInput(store.lastAnswer.toString());
+const updateInput = (value) => store.updateInput(value);
+const nextInput = (op) => store.nextInput(op);
+const clear = () => store.clear();
+const del = () => store.del();
+const equal = () => {
+  store.calculate();
+  store.addToLog();
+};
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-body {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  margin-top: 0;
-  padding-top: 0;
-}
 ul {
   list-style-type: none;
   padding: 0;
@@ -175,6 +138,7 @@ h1 {
   align-items: center;
   align-self: center;
   justify-content: center;
+  border-top: solid black 3px;
 }
 .grid-item {
   border: solid black 1px;
@@ -188,51 +152,78 @@ h1 {
   padding: 3px;
 }
 .calc-button {
+  display: flex;
+  align-items: center;
   font-family: "Courier New", Courier, monospace;
-  font-size: large;
+  font-size:x-large;
   border-radius: 5px;
   width: 60px;
   height: 60px;
   text-align: center;
   justify-content: center;
+  color: black;
 }
 .calc-button:hover {
   background-color: greenyellow;
 }
 #calculator {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  margin: 70px;
+  align-items: center;
+  margin: 40px;
   text-align: center;
   background-color: gray;
   width: min-content;
   height: min-content;
+  border: 3px solid black;
+  border-radius: 5px;
 }
 #calc-view {
   font-family: "Courier New" , Courier, monospace;
   font-weight: bold;
   display: flex;
-  justify-content: center;
-  width: 99%;
-  height: 80px;
+  width: 230px;
+  height: 60px;
   text-align: right;
   font-size: large;
   border: 0;
+  border-radius: 0;
 }
 #calc-view-wrapper {
-  border: solid black 3px;
+  align-items: center;
+  display: flex;
   justify-content: center;
-  width: 97%;
+  flex-direction: column;
+  border: solid black 3px;
+  width: min-content;
 }
 #result-view {
+  justify-content: center;
   font-family: "Courier New", Courier, monospace;
   border: 0;
   background-color: white;
-  display: flex;
-  justify-content: center;
-  width: 99%;
-  height: 40px;
+  border-radius: 0;
+  width: 230px;
+  height: 20px;
   text-align: right;
   font-size: large;
   color: gray;
+  user-select: none;
+}
+.non-resizable{
+  resize: none;
+  user-select: none;
+}
+
+#error-view{
+  width: 230px;
+  border-top: 2px solid black;
+  background-color: white;
+  color: red;
+  font-weight: 200;
+  text-align: right;
+  font-size: large;
+  user-select: none;
 }
 </style>
