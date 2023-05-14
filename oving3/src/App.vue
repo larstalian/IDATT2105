@@ -8,7 +8,7 @@
       <router-link to="/contact">Contact</router-link>
     </nav>
   </header>
-  
+
   <router-view />
 </template>
 

@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ref, Ref } from "vue";
+import { ref, Ref, computed } from "vue";
 import { useForm, useField } from "vee-validate";
 import * as Yup from "yup";
 import axios from "axios";
@@ -42,7 +42,12 @@ export const useContactStore = defineStore("contact", () => {
       errorMessage.value =
         "The form was not sent due to a network error. Sorry for the inconvenience. Please try again later.";
       console.error("Error:", error);
+      isSubmitted.value = false;
     }
+  });
+
+  const isFormValid = computed(() => {
+    return Object.keys(errors.value).length === 0;
   });
 
   return {
@@ -51,7 +56,8 @@ export const useContactStore = defineStore("contact", () => {
     message,
     submit,
     isSubmitted,
-    errors: errors.value,
+    errors,
     errorMessage,
+    isFormValid,
   };
 });

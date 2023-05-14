@@ -30,7 +30,10 @@
         required
       />
 
-      <button type="submit" :disabled="store.isSubmitted.valueOf()">
+      <button
+        type="submit"
+        :disabled="!store.isFormValid || store.isSubmitted.valueOf()"
+      >
         Submit
       </button>
     </form>
@@ -40,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import { useContactStore } from "@/store/contact";
+import { useContactStore } from "../store/contact";
 const store = useContactStore();
 </script>
 
@@ -87,7 +90,7 @@ label {
   font-weight: 100;
 }
 
-.error{
+.error {
   color: red;
 }
 </style>

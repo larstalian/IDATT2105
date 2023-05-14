@@ -27,7 +27,9 @@
         <button id="del" class="calc-button" @click="del()">DEL</button>
       </div>
       <div class="grid-item">
-        <button id="+" class="calc-button" @click="nextInput(`+`)">+</button>
+        <button id="button-plus" class="calc-button" @click="nextInput(`+`)">
+          +
+        </button>
       </div>
       <div class="grid-item">
         <button id="1" class="calc-button" @click="updateInput('1')">1</button>
@@ -39,7 +41,9 @@
         <button id="3" class="calc-button" @click="updateInput(`3`)">3</button>
       </div>
       <div class="grid-item">
-        <button id="-" class="calc-button" @click="nextInput(`-`)">-</button>
+        <button id="button-minus" class="calc-button" @click="nextInput(`-`)">
+          -
+        </button>
       </div>
       <div class="grid-item">
         <button id="4" class="calc-button" @click="updateInput(`4`)">4</button>
@@ -51,7 +55,13 @@
         <button id="6" class="calc-button" @click="updateInput(`6`)">6</button>
       </div>
       <div class="grid-item">
-        <button id="*" class="calc-button" @click="nextInput(`*`)">*</button>
+        <button
+          id="button-multiply"
+          class="calc-button"
+          @click="nextInput(`*`)"
+        >
+          *
+        </button>
       </div>
       <div class="grid-item">
         <button id="7" class="calc-button" @click="updateInput(`7`)">7</button>
@@ -63,7 +73,9 @@
         <button id="9" class="calc-button" @click="updateInput(`9`)">9</button>
       </div>
       <div class="grid-item">
-        <button id="/" class="calc-button" @click="nextInput(`/`)">/</button>
+        <button id="button-divide" class="calc-button" @click="nextInput(`/`)">
+          /
+        </button>
       </div>
       <div class="grid-item">
         <button id="none" class="calc-button"></button>
@@ -72,10 +84,12 @@
         <button id="0" class="calc-button" @click="updateInput(`0`)">0</button>
       </div>
       <div class="grid-item">
-        <button id="." class="calc-button" @click="updateInput(`.`)">.</button>
+        <button id="button-dot" class="calc-button" @click="updateInput(`.`)">
+          .
+        </button>
       </div>
       <div class="grid-item">
-        <button id="=" class="calc-button" @click="equal">=</button>
+        <button id="button-equals" class="calc-button" @click="equal">=</button>
       </div>
     </div>
   </div>

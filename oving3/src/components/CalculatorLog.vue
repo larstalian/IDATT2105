@@ -17,7 +17,6 @@ const store = useStore();
 const logList = computed(() => store.logList);
 </script>
 
-
 <style scoped>
 #log-list {
   display: flex;
