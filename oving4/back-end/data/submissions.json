@@ -1,1 +1,12 @@
-{"name":"Håvard","email":"havarderkul@mail.com","message":"Kul kalkis"}
+[
+  {
+    "name": "Jacob",
+    "email": "Jacob@mail.com",
+    "message": "sdwqdwqdqd"
+  },
+  {
+    "name": "Adele",
+    "email": "adele.kjolstad@gmail.com",
+    "message": "Hei"
+  }
+]

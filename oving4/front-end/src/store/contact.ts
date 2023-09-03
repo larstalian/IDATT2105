@@ -28,7 +28,7 @@ export const useContactStore = defineStore("contact", () => {
     try {
       // Send values to API
       const response = await axios.post(
-        "http://localhost:3000/submissions", values
+        "http://10.9.9.29:3000/submissions", values
         
         );
         console.log(JSON.stringify(values.data));
