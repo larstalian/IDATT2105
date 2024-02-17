@@ -4,7 +4,6 @@ import { useForm, useField } from "vee-validate";
 import * as Yup from "yup";
 import axios from "axios";
 
-// Define the validation schema using Yup
 const schema = Yup.object({
   name: Yup.string().max(20).required(),
   email: Yup.string().max(50).email().required(),

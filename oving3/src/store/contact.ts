@@ -4,7 +4,6 @@ import { useForm, useField } from "vee-validate";
 import * as Yup from "yup";
 import axios from "axios";
 
-// Define the validation schema using Yup
 const schema = Yup.object({
   name: Yup.string().max(20).required(),
   email: Yup.string().max(50).email().required(),
@@ -12,12 +11,10 @@ const schema = Yup.object({
 });
 
 export const useContactStore = defineStore("contact", () => {
-  // Create a form instance
   const { handleSubmit, errors } = useForm({
     validationSchema: schema,
   });
 
-  // Create validation fields
   const name = useField("name");
   const email = useField("email");
   const message = useField("message");
@@ -26,16 +23,13 @@ export const useContactStore = defineStore("contact", () => {
 
   const submit = handleSubmit(async (values) => {
     try {
-      // Send values to API
       const response = await axios.post(
         "http://localhost:3000/submissions",
         values
       );
 
-      // Log the response from the server
       console.log("Submit", JSON.stringify(response.data, null, 2));
 
-      // Update isSubmitted
       isSubmitted.value = true;
       errorMessage.value = null;
     } catch (error) {

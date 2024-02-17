@@ -44,15 +44,12 @@ export const useStore = defineStore({
       const length = this.inputValue.length;
       this.inputValue = this.inputValue.substring(0, length - 1);
     },
+    calculateAndLog() {
+      this.calculate();
+      this.addToLog();
+    },
     addToLog() {
-      const logItem =
-        this.prevValue +
-        " " +
-        this.operator +
-        " " +
-        this.newValue +
-        " = " +
-        this.inputValue;
+      const logItem = `${this.prevValue} ${this.operator} ${this.newValue} = ${this.result}`;
       this.logList.push(logItem);
     },
     calculate() {
@@ -61,14 +58,13 @@ export const useStore = defineStore({
         this.inputValue = "";
         return;
       }
-
+    
       if (this.inputValue !== "") {
         this.newValue = parseFloat(this.inputValue);
       }
-
+    
       let result = 0;
-      console.log(this.result);
-
+    
       switch (this.operator) {
         case "+":
           result = this.prevValue + this.newValue;
@@ -80,7 +76,7 @@ export const useStore = defineStore({
           if (this.newValue !== 0) {
             result = this.prevValue / this.newValue;
           } else {
-            this.errormessage = "Cannot divide by zero";
+            this.errorMessage = "Cannot divide by zero"; // Corrected typo here
             return;
           }
           break;
@@ -88,9 +84,9 @@ export const useStore = defineStore({
           result = this.prevValue * this.newValue;
           break;
       }
-      this.prevValue = this.inputValue;
-      this.inputValue = result.toString();
-      this.result = result;
+    
+      this.result = result; 
+      this.inputValue = result.toString(); 
     },
     updateErrorMessage(message) {
       this.errorMessage = message;

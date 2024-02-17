@@ -91,21 +91,17 @@ const inputValue = computed(() => store.inputValue);
 const prevValue = computed(() => store.prevValue);
 const errorMessage = computed(() => store.errorMessage);
 
-const ans = () => {
-  store.clear();
-};
-store.updateInput(store.lastAnswer.toString());
 const updateInput = (value) => store.updateInput(value);
 const nextInput = (op) => store.nextInput(op);
 const clear = () => store.clear();
 const del = () => store.del();
-const equal = () => {
-  store.calculate();
-  store.addToLog();
-};
+const equal = () => store.calculateAndLog();
+const ans = () => updateInput(store.result.toString())
 </script>
 
+
 <style scoped>
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -167,6 +163,7 @@ h1 {
   height: min-content;
   border: 3px solid black;
   border-radius: 5px;
+  user-select: none;
 }
 #calc-view {
   font-family: "Courier New", Courier, monospace;
@@ -178,6 +175,7 @@ h1 {
   font-size: large;
   border: 0;
   border-radius: 0;
+  user-select: none;
 }
 #calc-view-wrapper {
   align-items: center;
@@ -186,6 +184,7 @@ h1 {
   flex-direction: column;
   border: solid black 3px;
   width: min-content;
+  user-select: none;
 }
 #result-view {
   justify-content: center;
