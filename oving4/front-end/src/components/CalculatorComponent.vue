@@ -116,7 +116,6 @@ const clear = () => store.clear();
 const del = () => store.del();
 const equal = () => {
   store.calculate();
-  store.addToLog();
 };
 </script>
 

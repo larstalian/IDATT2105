@@ -11,12 +11,10 @@ const schema = Yup.object({
 });
 
 export const useContactStore = defineStore("contact", () => {
-  // Create a form instance
   const { handleSubmit, errors } = useForm({
     validationSchema: schema,
   });
 
-  // Create validation fields
   const name = useField("name");
   const email = useField("email");
   const message = useField("message");
@@ -25,7 +23,6 @@ export const useContactStore = defineStore("contact", () => {
 
   const submit = handleSubmit(async (values) => {
     try {
-      // Send values to API
       const response = await axios.post(
         "http://10.9.9.29:3000/submissions", values
         
